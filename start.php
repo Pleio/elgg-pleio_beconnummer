@@ -22,6 +22,7 @@
 		elgg_register_plugin_hook_handler("action", "register", "pleio_beconnummer_action_handler", 400);
 		elgg_register_plugin_hook_handler("action", "profile/edit", "pleio_beconnummer_action_handler", 400);
 		
+		elgg_register_plugin_hook_handler("action", "profile_manager/complete", "pleio_beconnummer_action_handler", 400);
 		elgg_register_plugin_hook_handler("action", "subsites/join/request_approval", "pleio_beconnummer_action_handler", 400);
 		elgg_register_plugin_hook_handler("action", "subsites/join/validate_domain", "pleio_beconnummer_action_handler", 400);
 		elgg_register_plugin_hook_handler("action", "subsites/join/missing_fields", "pleio_beconnummer_action_handler", 400);
