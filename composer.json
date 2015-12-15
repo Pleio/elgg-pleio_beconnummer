@@ -1,5 +1,5 @@
 {
-    "name": "pleio/beconnummer",
+    "name": "pleio/pleio_beconnummer",
     "description": "This plugin allows to add and verify a BECONnummer.",
     "type": "elgg-plugin",
     "keywords": ["elgg", "plugin", "becon"],
