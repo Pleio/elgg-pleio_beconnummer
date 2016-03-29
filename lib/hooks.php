@@ -54,6 +54,7 @@ function pleio_beconnummer_action_handler($hook, $type, $return_value, $params){
 				$user = get_user(get_input("guid"));
 				set_input($metadata_name, $user->$metadata_name);
 			} else {
+				forward(REFERER);
 				return false;
 			}
 		}
