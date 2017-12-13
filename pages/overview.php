@@ -60,11 +60,10 @@ header("Content-Type: text/csv");
 header("Content-Disposition: attachment;filename=becon-export-{$time}.csv");
 
 $out = fopen("php://output", "w");
+fputcsv($out, [ "GUID", elgg_echo("name"), elgg_echo("email") ]);
+
 foreach ($users as $user) {
-    fputcsv($out, [
-        $user->guid,
-        $user->name
-    ]);
+    fputcsv($out, [ $user->guid, $user->name, $user->email ]);
 }
 
 fclose($out);
