@@ -8,6 +8,11 @@ if (!$user) {
     forward("/login");
 }
 
+if (!pleio_beconnummer_is_manager($user)) {
+    register_error(elgg_echo("pleio_beconnummer:error:not_a_becon_manager"));
+    forward(REFERER);
+}
+
 if (!$data) {
     register_error(elgg_echo("pleio_beconnummer:invalid_link"));
     forward("/");
@@ -19,7 +24,6 @@ if ($data["guid"] !== $user->guid) {
 }
 
 $field_name = pleio_beconnummer_get_profile_field_name();
-
 if (!$field_name) {
     register_error(elgg_echo("pleio_beconnummer:no_beconfield"));
     forward("/");
@@ -41,7 +45,10 @@ $options = [
     "limit" => 0
 ];
 
+$ia = elgg_set_ignore_access(true); // ignore access as becon fields are always private
 $users = elgg_get_entities_from_metadata($options);
+elgg_set_ignore_access($ia);
+
 if (!$users) {
     $users = [];
 }
