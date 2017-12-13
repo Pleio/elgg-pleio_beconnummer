@@ -60,3 +60,31 @@ function pleio_beconnummer_action_handler($hook, $type, $return_value, $params){
 		}
 	}
 }
+
+function pleio_beconnummer_user_hover_menu_handler($hook, $type, $returnvalue, $params) {
+	$result = $returnvalue;
+
+	if (!elgg_is_admin_logged_in()) {
+		return $result;
+	}
+
+	$user = elgg_extract("entity", $params);
+	if (!$user) {
+		return $result;
+	}
+
+	if (pleio_beconnummer_is_manager($user)) {
+		$text = elgg_echo("pleio_beconnummer:delete_manager");
+	} else {
+		$text = elgg_echo("pleio_beconnummer:create_manager");
+	}
+
+	$result[] = ElggMenuItem::factory(array(
+		"name" => "pleio_beconnummer_manager",
+		"text" => $text,
+		"href" => "action/pleio_beconnummer/toggle_manager?user_guid={$user->guid}",
+		"confirm" => elgg_echo("pleio_beconnummer:sure")
+	));
+
+	return $result;
+}
