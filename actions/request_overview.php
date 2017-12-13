@@ -25,4 +25,5 @@ elgg_send_email(
     ])
 );
 
+system_log($user, "requested_beconnummer_overview");
 system_message(elgg_echo("pleio_beconnummer:request_overview:requested"));

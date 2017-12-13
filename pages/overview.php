@@ -45,6 +45,8 @@ $options = [
     "limit" => 0
 ];
 
+system_log($user, "downloaded_beconnummer_overview");
+
 $ia = elgg_set_ignore_access(true); // ignore access as becon fields are always private
 $users = elgg_get_entities_from_metadata($options);
 elgg_set_ignore_access($ia);
