@@ -82,9 +82,12 @@ function pleio_beconnummer_is_manager(ElggUser $user) {
 function pleio_beconnummer_get_profile_field_name() {
 	global $CONFIG;
 
-	foreach ($CONFIG->profile_fields as $field => $type) {
-		if ($type === "beconnummer") {
-			return $field;
+	$items = profile_manager_get_categorized_fields(null, false, true);
+	foreach ($items['categories'] as $cat_id => $cat) {
+		foreach ($items['fields'][$cat_id] as $field) {
+			if ($field->metadata_type === "beconnummer") {
+				return $field->metadata_name;
+			}
 		}
 	}
 
