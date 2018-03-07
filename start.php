@@ -2,6 +2,7 @@
 
 require_once(dirname(__FILE__) . "/lib/functions.php");
 require_once(dirname(__FILE__) . "/lib/hooks.php");
+require_once(dirname(__FILE__) . "/lib/events.php");
 
 elgg_register_event_handler("init", "system", "pleio_beconnummer_init");
 
@@ -28,6 +29,7 @@ function pleio_beconnummer_init() {
 	elgg_register_plugin_hook_handler("action", "subsites/join/missing_fields", "pleio_beconnummer_action_handler", 400);
 
 	elgg_register_plugin_hook_handler("register", "menu:user_hover", "pleio_beconnummer_user_hover_menu_handler");
+	elgg_register_event_handler("delete", "member_of_site", "pleio_beconnummer_leave_site");
 
 	// register actions
 	elgg_register_action("pleio_beconnummer/settings/save", dirname(__FILE__) . "/actions/admin/save_settings.php", "admin");
