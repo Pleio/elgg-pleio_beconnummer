@@ -29,8 +29,9 @@ function pleio_beconnummer_action_handler($hook, $type, $return_value, $params){
 		$value = get_input("custom_profile_fields_" . $metadata_name);
 	}
 
-	if (!$value && $user) {
-		$value = $user->$metadata_name;
+	if (!$value && $user && $user->$metadata_name) {
+		// do not recheck when user has a becon configured
+		return true;
 	}
 
 	if (!pleio_beconnummer_validate_beconnummer($value)) {
